@@ -32,7 +32,7 @@ piezas de contenido. Documentar es el principio de la cadena, no el final.
     <h3>LupinOne</h3>
     <p>Una clave privada publicada «para que no la encuentren», una passphrase de diccionario y dos
     saltos de usuario por permisos: módulo del sistema escribible y <code>pip</code> con sudo.</p>
-    <span class="meta">Debian 11 · dificultad media · tres usuarios <span class="go">→</span></span>
+    <span class="meta">Debian 11 · dificultad media · dos usuarios <span class="go">→</span></span>
   </a>
   <a class="card" href="soc/wazuh-n8n-thehive/">
     <span class="tag">SOC · Detección</span>

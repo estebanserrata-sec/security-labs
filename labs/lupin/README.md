@@ -22,7 +22,7 @@ cuenta, `sudo` permite ejecutar un script de Python de otro usuario; el módulo 
 sistema es **escribible por cualquiera**, así que se inyecta una reverse shell y se pasa a `arsene`.
 Él puede ejecutar `pip` como root: un paquete con `setup.py` malicioso cierra la escalada.
 
-Es una cadena de **tres saltos de usuario** donde ninguno exige un exploit: permisos mal puestos y
+Es una cadena de **dos usuarios y ningún exploit**: `icex64`, luego `arsene`, luego root: permisos mal puestos y
 una clave privada publicada «para que no la encuentren».
 
 ## Reconocimiento
@@ -176,5 +176,5 @@ por red.
   importe ejecuta lo que otro haya escrito.
 - **`sudo` sobre `pip` (o cualquier gestor de paquetes) equivale a `sudo` sobre el intérprete**: si
   puede instalar, puede ejecutar.
-- **Tres saltos de usuario no es una máquina difícil, es una máquina mal configurada**: ninguna
-  elevación usó un exploit, solo permisos y una contraseña en un diccionario.
+- **Dos usuarios no hacen una máquina difícil, hacen una máquina mal configurada**: ninguna de las
+  dos elevaciones usó un exploit, solo permisos y una contraseña de lista.

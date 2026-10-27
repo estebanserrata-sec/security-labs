@@ -17,7 +17,8 @@
 ## Resumen
 
 La web esconde un directorio `secret` con un mensaje firmado por un usuario y un fichero cifrado en
-Base58. Al decodificarlo sale una **clave privada SSH** cuya passphrase cae con `fasttrack`. Con esa
+Base58. El secreto está en un directorio `~secret` que aparece al enumerar con `ffuf`, y dentro un
+fichero oculto `.mysecret.txt`: al decodificarlo sale una **clave privada SSH** cuya passphrase cae con `fasttrack`. Con esa
 cuenta, `sudo` permite ejecutar un script de Python de otro usuario; el módulo `webbrowser` del
 sistema es **escribible por cualquiera**, así que se inyecta una reverse shell y se pasa a `arsene`.
 Él puede ejecutar `pip` como root: un paquete con `setup.py` malicioso cierra la escalada.
@@ -39,29 +40,50 @@ scripts no da título ni contenido interesante, pero deja `robots.txt` en la lis
 
 ![Escaneo de puertos: solo SSH y HTTP](evidencia/nmap.png)
 
-## El secreto
+## El secreto: dos enumeraciones
 
-La web está tematizada con Arsène Lupin, pero el contenido real está en una ruta que no aparece en
-el índice. Una enumeración de directorios con `ffuf` la encuentra:
+La web está tematizada con Arsène Lupin. El escaneo con scripts deja un directorio `~myfiles` que
+parece la pista, pero al abrirlo da **404**: el autor dejó un señuelo.
 
-```bash
-ffuf -u http://<IP-objetivo>/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt
-```
-
-Y dentro, un mensaje que lo pone en bandeja: el autor comparte su **clave privada SSH** y avisa de
-que la passphrase está en un diccionario.
-
-![El mensaje dentro de /secret/: comparte su clave y avisa de la passphrase](evidencia/secret-mensaje.png)
-
-Se abre el fichero del directorio antes de tocar ninguna herramienta:
+El camino real es una ruta con forma de directorio de usuario de Apache (`~nombre`), y para eso hay
+que enumerar con un patrón concreto:
 
 ```bash
-curl http://<IP-objetivo>/secret/secret.txt
+sudo ffuf -c -w /usr/share/seclists/Discovery/Web-Content/common.txt \
+  -u 'http://<IP-objetivo>/~FUZZ'
 ```
 
-Contiene un bloque de texto largo que no es base64:
+Aparece **`secret`** con un `301`: el directorio es **`/~secret/`**.
 
-![El contenido del fichero secret.txt](evidencia/secret-txt.png)
+![Primera enumeración: aparece ~secret con un 301](evidencia/ffuf-directorios.png)
+
+Dentro hay un mensaje que lo pone en bandeja: comparte su clave privada SSH y avisa de que la
+passphrase se puede crackear con **fasttrack**.
+
+![El mensaje de /~secret/: comparte su clave y avisa de la passphrase](evidencia/secret-mensaje.png)
+
+Dice que el fichero está escondido «en algún sitio de aquí». Es literal: es un fichero **oculto**,
+con punto delante, así que la segunda enumeración busca dotfiles dentro del directorio y añade las
+extensiones:
+
+```bash
+sudo ffuf -c -ic -w /usr/share/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt \
+  -u 'http://<IP-objetivo>/~secret/.FUZZ' -fc 403 -e .txt,.html
+```
+
+Encuentra **`.mysecret.txt`** con un `200` y 6.689 bytes.
+
+![Segunda enumeración: el fichero oculto .mysecret.txt](evidencia/ffuf-fichero-oculto.png)
+
+Se abre el fichero antes de tocar ninguna herramienta de descifrado:
+
+```bash
+curl http://<IP-objetivo>/~secret/.mysecret.txt
+```
+
+Contiene un bloque de texto largo que no es base64 ni nada legible:
+
+![El contenido de .mysecret.txt](evidencia/mysecret-txt.png)
 
 Con el contenido ya en la mano, se identifica: un identificador de cifrados lo resuelve como
 **Base 58**, y la decodificación devuelve una clave privada OpenSSH completa:

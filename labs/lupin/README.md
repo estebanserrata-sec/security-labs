@@ -53,12 +53,18 @@ que la passphrase está en un diccionario.
 
 ![El mensaje dentro de /secret/: comparte su clave y avisa de la passphrase](evidencia/secret-mensaje.png)
 
-El fichero `secret.txt` del mismo directorio contiene un bloque de texto que no es base64:
+Se abre el fichero del directorio antes de tocar ninguna herramienta:
+
+```bash
+curl http://<IP-objetivo>/secret/secret.txt
+```
+
+Contiene un bloque de texto largo que no es base64:
 
 ![El contenido del fichero secret.txt](evidencia/secret-txt.png)
 
-El identificador de cifrados lo resuelve como **Base 58** y la decodificación devuelve una clave
-privada OpenSSH completa:
+Con el contenido ya en la mano, se identifica: un identificador de cifrados lo resuelve como
+**Base 58**, y la decodificación devuelve una clave privada OpenSSH completa:
 
 ![Decodificación Base58: aparece la clave privada](evidencia/base58-decode.png)
 

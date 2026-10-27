@@ -27,6 +27,13 @@ piezas de contenido. Documentar es el principio de la cadena, no el final.
     reverse shell y <code>sudo</code> sobre Python.</p>
     <span class="meta">Ubuntu 20.04 · dificultad media · 10 pasos <span class="go">→</span></span>
   </a>
+  <a class="card" href="labs/lupin/">
+    <span class="tag">Lab · LupinOne</span>
+    <h3>LupinOne</h3>
+    <p>Una clave privada publicada «para que no la encuentren», una passphrase de diccionario y dos
+    saltos de usuario por permisos: módulo del sistema escribible y <code>pip</code> con sudo.</p>
+    <span class="meta">Debian 11 · dificultad media · tres usuarios <span class="go">→</span></span>
+  </a>
   <a class="card" href="soc/wazuh-n8n-thehive/">
     <span class="tag">SOC · Detección</span>
     <h3>Wazuh → n8n → TheHive</h3>

@@ -112,10 +112,17 @@ Contiene un bloque de texto largo que no es base64 ni nada legible.
 ![Contenido de .mysecret.txt: un bloque largo](evidencia/mysecret-txt.png)
 
 Con el contenido en la mano se identifica: el identificador de cifrados lo resuelve como
-**Base 58**. Al decodificarlo aparece una **clave privada OpenSSH** completa, que se guarda como
-`sshkey`.
+**Base 58**.
+
+![El identificador de cifrados resuelve Base 58](evidencia/dcode-identifica.png)
+
+Al decodificarlo aparece una **clave privada OpenSSH** completa, que se guarda como `sshkey`.
 
 ![Decodificación Base 58: aparece la clave privada](evidencia/base58-decode.png)
+
+La clave se guarda en un fichero para poder usarla con SSH.
+
+![La clave guardada como sshkey](evidencia/clave-guardada.png)
 
 > Base 58 no es cifrado, es codificación: este paso no necesita cracking.
 
@@ -127,6 +134,11 @@ trae Kali:
 ```bash
 locate ssh2john
 sudo /usr/bin/ssh2john sshkey > ssh2john
+```
+
+![ssh2john convierte la clave a un hash que john entiende](evidencia/ssh2john.png)
+
+```bash
 sudo john --wordlist=/usr/share/wordlists/fasttrack.txt ssh2john
 ```
 
@@ -163,6 +175,8 @@ print ("Its not yet ready to get in action")
 webbrowser.open("https://empirecybersecurity.co.mz")
 ```
 
+![El contenido de heist.py](evidencia/heist-py.png)
+
 Y ahí está el fallo: el módulo del sistema es **escribible por cualquiera**.
 
 ```bash
@@ -186,6 +200,8 @@ Se escucha en el puerto y se lanza el script con los permisos de `arsene`:
 nc -lvp 1234
 sudo -u arsene /usr/bin/python3.9 /home/arsene/heist.py
 ```
+
+![El listener esperando la conexión](evidencia/listener-nc.png)
 
 La conexión llega desde la propia máquina y deja una shell como **arsene**, en el home de `icex64`.
 

@@ -32,10 +32,12 @@ clave privada publicada «para que no la encuentren».
 Barrido de la red para localizar la máquina:
 
 ```bash
-sudo arp-scan -l
+sudo netdiscover -r 192.168.217.0/24
 ```
 
 Cuatro hosts en la red de laboratorio; el objetivo es **192.168.217.131**.
+
+![netdiscover: cuatro hosts, el objetivo es el .131](evidencia/netdiscover.png)
 
 Escaneo completo de servicios:
 

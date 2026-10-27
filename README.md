@@ -62,8 +62,10 @@ public/                lo que se publica en GitHub Pages
 
 ## Reglas del repositorio
 
-1. **Nada de datos reales**: ni IPs, ni correos, ni hashes, ni credenciales, ni nombres de cliente.
-2. El saneador (`herramientas/sanear.py`) corre en cada push y **bloquea** el commit si encuentra algo.
+1. **Datos de cliente, nunca.** En `labs/` sí aparecen la IP, el hash y las credenciales **del reto**:
+   son máquinas públicas y retiradas, y sin ellas el writeup no sirve.
+2. El saneador (`herramientas/sanear.py`) corre en cada push: bloquea **tokens, claves privadas y
+   cabeceras** en cualquier ruta, y credenciales o IPs fuera de `labs/`.
 3. Cada lab lleva su apartado de **detección**: qué alerta lo habría cazado y con qué técnica.
 
 ## Uso

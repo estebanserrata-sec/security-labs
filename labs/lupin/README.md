@@ -17,7 +17,7 @@
 ## Resumen
 
 La web esconde un directorio `secret` con un mensaje firmado por un usuario y un fichero cifrado en
-Base58. Al decodificarlo sale una **clave privada SSH** cuya passphrase cae con `rockyou`. Con esa
+Base58. Al decodificarlo sale una **clave privada SSH** cuya passphrase cae con `fasttrack`. Con esa
 cuenta, `sudo` permite ejecutar un script de Python de otro usuario; el módulo `webbrowser` del
 sistema es **escribible por cualquiera**, así que se inyecta una reverse shell y se pasa a `arsene`.
 Él puede ejecutar `pip` como root: un paquete con `setup.py` malicioso cierra la escalada.
@@ -64,15 +64,16 @@ privada OpenSSH completa:
 
 ## De la clave al usuario
 
-La clave está protegida con passphrase. Se convierte al formato de john y se ataca con el
-diccionario que trae Kali:
+La clave está protegida con passphrase. Se convierte al formato de john y se ataca con la lista `fasttrack`
+que trae Kali:
 
 ```bash
 sudo /usr/bin/ssh2john sshkey > ssh2john
-sudo john --wordlist=/usr/share/wordlists/rockyou.txt ssh2john
+sudo john --wordlist=/usr/share/wordlists/fasttrack.txt ssh2john
 ```
 
-La passphrase sale del diccionario en segundos:
+La passphrase sale de la lista en segundos: era `lupin`, el nombre de la propia máquina, la
+pista que el autor dejó escrita en el mensaje del directorio secreto.
 
 ![john contra la passphrase de la clave](evidencia/john-passphrase.png)
 

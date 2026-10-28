@@ -3,7 +3,7 @@
 | Campo | Valor |
 |---|---|
 | **Plataforma** | Empresa · LupinOne (reto del «gentleman thief») |
-| **Sistema** | Debian 11 (kernel 5.10.0-8) · Apache 2.4.40 · OpenSSH 8.2p1 |
+| **Sistema** | Debian 11 · Apache 2.4.48 · OpenSSH 8.4p1 |
 | **Dificultad** | media |
 | **Fecha** | 2026-10-27 |
 | **Tiempo** | ~40 minutos |
@@ -47,18 +47,19 @@ nmap -sC -sV -p- <IP-objetivo>
 
 Dos servicios y dos avisos:
 
-- **22/tcp** — OpenSSH 8.2p1 (paquete de Ubuntu).
-- **80/tcp** — Apache httpd **2.4.40** (Ubuntu).
+- **22/tcp** — OpenSSH **8.4p1** (Debian 5).
+- **80/tcp** — Apache httpd **2.4.48** (Debian).
+- `http-robots.txt` — una entrada prohibida: **`/~myfiles`**.
 - `http-robots.txt`: una entrada en *disallow*.
 - `http-enum`: **`/myfiles/`**, «potentially interesting directory».
 
-![Escaneo: SSH, Apache 2.4.40 y el /myfiles/ que anuncia http-enum](evidencia/nmap.png)
+![nmap con -sC: los puertos y el /~myfiles que delata robots.txt](evidencia/nmap.png)
 
 La web está tematizada como Arsène Lupin, el ladrón de guante blanco.
 
 ## El señuelo y las dos enumeraciones
 
-Se prueba el directorio que anuncia el escaneo, con forma de directorio de usuario:
+El primer directorio no sale de adivinar: sale de `nmap -sC`, que lee `robots.txt` y delata una entrada con forma de directorio de usuario. Se prueba:
 
 ```
 http://<IP-objetivo>/~myfiles/

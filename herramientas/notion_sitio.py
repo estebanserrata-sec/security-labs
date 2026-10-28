@@ -15,17 +15,29 @@ VERSION = "2025-09-03"
 PAGINA = "2b75a16a-365b-81b4-8440-cb557e405c5c"
 
 PORTFOLIO = """# Esteban Serrata
-Ciberseguridad defensiva y ofensiva · República Dominicana
+**System engineer · Cybersecurity Specialist**
+Pentesting, automatización de seguridad, SOC y hardening de red
+Santo Domingo Este, República Dominicana
 
 <callout icon="🔐" color="blue_bg">
-	Documento lo que hago: laboratorios, detección y automatización. Sin datos de clientes, con evidencia de cada paso.
+	Ingeniero de Sistemas y especialista en ciberseguridad con más de **6 años y medio en operaciones de SOC** y una base de **8 años en soporte de infraestructura tecnológica**. Certificado como **SOC Analyst (CSA)** e **ISC2 Certified in Cybersecurity (CC)**. Documento lo que hago con evidencia de cada paso.
 </callout>
 
-## Qué hago
+## Sobre mí
 
-- **Detección y respuesta**: SIEM con Wazuh, reglas propias y automatización de alertas hacia n8n y TheHive.
-- **Pentesting de laboratorio**: máquinas retiradas documentadas con capturas, y el apartado de detección de cada una.
-- **Contenido técnico**: carruseles y reels de laboratorio y detección, generados desde el mismo repositorio.
+Mi perfil se centra en fortalecer la postura de seguridad de la infraestructura corporativa, desde el monitoreo fino hasta la mitigación activa.
+
+- **Operaciones SOC y detección**: gestión e implementación de plataformas SIEM (Wazuh, NetWitness), correlación de eventos, telemetría de endpoints con Sysmon y desarrollo de reglas personalizadas para detección precisa y menos falsos positivos.
+- **Orquestación y automatización (SOAR)**: flujos de trabajo que conectan el monitoreo con la gestión de incidentes (TheHive) para reducir el tiempo medio de respuesta.
+- **Seguridad ofensiva y hardening**: pentesting, evaluación de vulnerabilidades y controles de seguridad en servidores Linux/Proxmox y redes.
+- **Base de ingeniería**: arquitectura de redes, virtualización y sistemas, para entender el impacto real de cada incidente en la continuidad del negocio.
+
+## Experiencia
+
+### SOC Analyst · Confidencial
+**noviembre 2019 — actualidad** · Santo Domingo, Distrito Nacional, República Dominicana
+
+Operación de SOC en jornada completa durante más de seis años: monitoreo, triaje y respuesta a incidentes, con automatización de los flujos repetitivos.
 
 ## Proyectos reales
 
@@ -45,13 +57,27 @@ Flujo completo en producción propia: **Wazuh → n8n → TheHive**. La alerta s
 
 Pipeline que convierte un JSON en carrusel y en reel vertical con narración y efectos: **Remotion** para la animación, **ffmpeg** para el montaje, **Piper** para la voz y **GitHub Pages** como destino. Un solo origen de contenido, tres salidas.
 
+## Certificaciones y formación
+
+**Certificaciones**
+
+- **Certified SOC Analyst (CSA)** — EC-Council · junio 2024
+- **Certified in Cybersecurity (CC)** — ISC2 · mayo 2024
+- **Junior Cybersecurity Analyst** — Cisco Networking Academy · mayo 2024
+- **Ethical Hacker** — Cisco Networking Academy · junio 2025
+- **Especialista en Seguridad Informática** — Cybers Academy Capabilita · septiembre 2021
+
+**Formación académica**
+
+- **Ingeniero de Sistemas** — Universidad Dominico Americano
+
 ## Habilidades
 
-- **SIEM y detección**: Wazuh, MITRE ATT&CK, reglas, decoders y triaje.
-- **Redes y sistemas**: Linux, segmentación, hardening, análisis de tráfico.
-- **Pentesting**: nmap, ffuf, Burp Suite, sqlmap, hydra, john, linPEAS, git-dumper.
-- **Automatización**: n8n, Python, Bash, Docker Compose, APIs (GitHub, Notion).
-- **Contenido**: ffmpeg, Remotion, diseño de carruseles, narración sintética.
+- **SIEM y detección**: Wazuh, NetWitness, Sysmon, MITRE ATT&CK, reglas y decoders, triaje.
+- **SOAR y automatización**: n8n, TheHive, Python, Bash, APIs (GitHub, Notion).
+- **Ofensiva**: nmap, ffuf, Burp Suite, sqlmap, hydra, john, linPEAS, git-dumper.
+- **Infraestructura**: Linux, Proxmox, virtualización, segmentación de red, hardening.
+- **Contenido técnico**: ffmpeg, Remotion, diseño de carruseles, narración sintética.
 
 ## Contacto
 

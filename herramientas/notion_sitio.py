@@ -19,9 +19,18 @@ PORTFOLIO = """# Esteban Serrata
 Pentesting, automatización de seguridad, SOC y hardening de red
 Santo Domingo Este, República Dominicana
 
-<callout icon="🔐" color="blue_bg">
-	Ingeniero de Sistemas y especialista en ciberseguridad con más de **6 años y medio en operaciones de SOC** y una base de **8 años en soporte de infraestructura tecnológica**. Certificado como **SOC Analyst (CSA)** e **ISC2 Certified in Cybersecurity (CC)**. Documento lo que hago con evidencia de cada paso.
+<callout icon="🛡️" color="orange_bg">
+	**6 años y medio en operaciones de SOC.** 8 años en soporte de infraestructura tecnológica. Certificado **CSA** (EC-Council) e **ISC2 CC**.
+	Todo lo que hay debajo se puede comprobar: writeups con capturas y flujos que están corriendo.
 </callout>
+
+<callout icon="🔗" color="gray_bg">
+	[Writeups](https://estebanserrata-sec.github.io/security-labs/) · [GitHub](https://github.com/estebanserrata-sec) · [LinkedIn](https://www.linkedin.com/in/estebanserrata) · [Instagram](https://www.instagram.com/estebanserrata.sec)
+</callout>
+
+---
+
+---
 
 ## Sobre mí
 
@@ -32,12 +41,16 @@ Mi perfil se centra en fortalecer la postura de seguridad de la infraestructura 
 - **Seguridad ofensiva y hardening**: pentesting, evaluación de vulnerabilidades y controles de seguridad en servidores Linux/Proxmox y redes.
 - **Base de ingeniería**: arquitectura de redes, virtualización y sistemas, para entender el impacto real de cada incidente en la continuidad del negocio.
 
+---
+
 ## Experiencia
 
 ### SOC Analyst · Confidencial
 **noviembre 2019 — actualidad** · Santo Domingo, Distrito Nacional, República Dominicana
 
 Operación de SOC en jornada completa durante más de seis años: monitoreo, triaje y respuesta a incidentes, con automatización de los flujos repetitivos.
+
+---
 
 ## Proyectos reales
 
@@ -57,6 +70,8 @@ Flujo completo en producción propia: **Wazuh → n8n → TheHive**. La alerta s
 
 Pipeline que convierte un JSON en carrusel y en reel vertical con narración y efectos: **Remotion** para la animación, **ffmpeg** para el montaje, **Piper** para la voz y **GitHub Pages** como destino. Un solo origen de contenido, tres salidas.
 
+---
+
 ## Certificaciones y formación
 
 **Certificaciones**
@@ -71,6 +86,8 @@ Pipeline que convierte un JSON en carrusel y en reel vertical con narración y e
 
 - **Ingeniero de Sistemas** — Universidad Dominico Americano
 
+---
+
 ## Habilidades
 
 - **SIEM y detección**: Wazuh, NetWitness, Sysmon, MITRE ATT&CK, reglas y decoders, triaje.
@@ -78,6 +95,8 @@ Pipeline que convierte un JSON en carrusel y en reel vertical con narración y e
 - **Ofensiva**: nmap, ffuf, Burp Suite, sqlmap, hydra, john, linPEAS, git-dumper.
 - **Infraestructura**: Linux, Proxmox, virtualización, segmentación de red, hardening.
 - **Contenido técnico**: ffmpeg, Remotion, diseño de carruseles, narración sintética.
+
+---
 
 ## Contacto
 
@@ -139,6 +158,17 @@ def main() -> None:
         llamar("PATCH", f"/blocks/{b['id']}", {"archived": True})
         borrados += 1
     print(f"borrados: {borrados} · bases de datos conservadas: {conservados}")
+
+    base = "https://estebanserrata-sec.github.io/security-labs/assets/img"
+    llamar(
+        "PATCH",
+        f"/pages/{PAGINA}",
+        {
+            "cover": {"type": "external", "external": {"url": f"{base}/notion-portada.png"}},
+            "icon": {"type": "external", "external": {"url": f"{base}/notion-icono.png"}},
+        },
+    )
+    print("portada e icono aplicados")
 
     llamar("PATCH", f"/pages/{PAGINA}/markdown", {"type": "insert_content", "insert_content": {"content": PORTFOLIO}})
     print("contenido nuevo escrito")

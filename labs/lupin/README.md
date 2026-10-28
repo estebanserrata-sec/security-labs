@@ -186,7 +186,7 @@ find / -type f -perm 777 2> /dev/null
 # /usr/lib/python3.9/webbrowser.py
 ```
 
-![El módulo webbrowser está en 777](evidencia/permisos-777.png)
+> La captura de ese `find` no muestra el resultado con claridad: la terminal lista cientos de «Permission denied» antes de la línea buena. El hallazgo va en el texto, sin captura que lo ilustre a medias.
 
 Se edita para que, al importarlo, devuelva una shell al atacante:
 

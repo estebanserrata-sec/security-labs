@@ -63,9 +63,9 @@ Pipeline que convierte un JSON en carrusel y en reel vertical con narración y e
 
 - **Certified SOC Analyst (CSA)** — EC-Council · junio 2024
 - **Certified in Cybersecurity (CC)** — ISC2 · mayo 2024
-- **Junior Cybersecurity Analyst** — Cisco Networking Academy · mayo 2024
 - **Ethical Hacker** — Cisco Networking Academy · junio 2025
-- **Especialista en Seguridad Informática** — Cybers Academy Capabilita · septiembre 2021
+- **Linux Essentials LPI** — Cisco Networking Academy · mayo 2024
+- **SIEM · Seguridad gestionada** — Cyberacademy Capabilita · septiembre 2021
 
 **Formación académica**
 

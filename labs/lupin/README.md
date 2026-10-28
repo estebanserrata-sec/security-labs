@@ -140,7 +140,7 @@ sudo /usr/bin/ssh2john sshkey > ssh2john
 ![ssh2john convierte la clave a un hash que john entiende](evidencia/ssh2john.png)
 
 ```bash
-john --wordlist=/usr/share/wordlists/fasttrack.txt ssh2john
+sudo john --wordlist=/usr/share/wordlists/fasttrack.txt ssh2john
 ```
 
 La passphrase cae en el acto: **`Passw0rd!`**. No hay truco ni pista: es una contraseña de lista,

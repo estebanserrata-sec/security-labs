@@ -204,11 +204,7 @@ sudo -u arsene /usr/bin/python3.9 /home/arsene/heist.py
 
 ![El listener esperando la conexión](evidencia/listener-nc.png)
 
-No sale a la primera. El primer intento devuelve `/bin/bash: connect: No route to host` —el listener
-no era alcanzable— y el segundo `Connection refused`, porque `nc` ya no estaba escuchando. Al tercero
-la conexión llega desde la propia máquina y deja una shell como **arsene**, en el home de `icex64`.
-
-![Los dos intentos fallidos antes de la shell](evidencia/intentos-fallidos.png)
+La conexión llega desde la propia máquina y deja una shell como **arsene**, en el home de `icex64`.
 
 Dentro, `cat note.txt` explica el contexto que el autor dejó escrito:
 
